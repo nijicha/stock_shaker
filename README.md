@@ -1,6 +1,6 @@
 # StockShaker
 
-A gems used to kick off API for eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](git remote add origin https://github.com/nijicha/stock_shaker.git)
+A gems used to kick off API for eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)
 
 ## Installation
 
