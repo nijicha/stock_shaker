@@ -23,11 +23,11 @@ Gem::Specification.new do |spec|
   DESCRIPTION
 
   spec.metadata = {
-    homepage_uri: '#',
-    changelog_uri: '#',
-    source_code_uri: 'https://github.com/nijicha/stock_shaker/',
-    documentation_uri: '#',
-    bug_tracker_uri: 'https://github.com/nijicha/stock_shaker/issues'
+    'homepage_uri' => '#',
+    'changelog_uri' => '#',
+    'source_code_uri' => 'https://github.com/nijicha/stock_shaker/',
+    'documentation_uri' => '#',
+    'bug_tracker_uri' => 'https://github.com/nijicha/stock_shaker/issues'
   }
 
   # Specify which files should be added to the gem when it is released.
@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rest-client'
+  spec.add_runtime_dependency 'rest-client', '~> 2.0', '>= 2.0.2'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 10.0'
