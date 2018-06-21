@@ -4,10 +4,16 @@ A gems used to kick off API for eCommerce in Thailand. This gems inspired from [
 
 ## Installation
 
-Add this line to your application's Gemfile:
+**StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
 gem 'stock_shaker'
+```
+
+\* If you'd rather install **StockShaker** with ruby-versions below than `2.4`. You need to add `openssl` as dependencies
+
+```ruby
+gem 'openssl'
 ```
 
 And then execute:
@@ -21,6 +27,11 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+## Compatibility
+We supported
+- Ruby MRI 2.2+
+- Rails 5.0+
 
 ## TODO
 
