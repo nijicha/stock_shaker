@@ -12,3 +12,6 @@
 
 # Ignore .idea/ of Jetbrains products
 .idea/
+
+# Ignore any .gem file
+*.gem
