@@ -3,7 +3,7 @@ AllCops:
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
-  Max: 120
+  Max: 80
 
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
@@ -25,6 +25,9 @@ Metrics/ClassLength:
 # See more: https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/FrozenStringLiteralComment
 FrozenStringLiteralComment:
   Enabled: true
+
+# Style/ClassAndModuleChildren:
+#  EnforcedStyle: compact
 
 # We do not need to support Ruby 1.9, so this is good to use.
 Style/SymbolArray:
