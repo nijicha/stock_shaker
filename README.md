@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/stock_shaker.svg)](https://badge.fury.io/rb/stock_shaker)
 [![Build Status](https://travis-ci.org/nijicha/stock_shaker.svg?branch=master)](https://travis-ci.org/nijicha/stock_shaker)
 
-A gems used to kick off API for eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5){:target="_blank"}
+A gems used to kick off API for eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)
 
 ## Installation
 
@@ -13,7 +13,9 @@ A gems used to kick off API for eCommerce in Thailand. This gems inspired from [
 gem 'stock_shaker'
 ```
 
-\* If you'd rather install **StockShaker** with ruby-versions below than `2.4`. You need to add `openssl` as dependencies
+If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
+
+You need to add `openssl` as dependencies in `Gemfile`
 
 ```ruby
 gem 'openssl'
