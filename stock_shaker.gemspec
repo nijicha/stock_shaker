@@ -23,10 +23,9 @@ Gem::Specification.new do |spec|
   DESCRIPTION
 
   spec.metadata = {
-    'homepage_uri' => '#',
-    'changelog_uri' => '#',
-    'source_code_uri' => 'https://github.com/nijicha/stock_shaker/',
-    'documentation_uri' => '#',
+    'homepage_uri' => 'https://rubygems.org/gems/stock_shaker',
+    'changelog_uri' => 'https://rubygems.org/gems/stock_shaker/CHANGELOG.md',
+    'source_code_uri' => 'https://github.com/nijicha/stock_shaker',
     'bug_tracker_uri' => 'https://github.com/nijicha/stock_shaker/issues'
   }
 
