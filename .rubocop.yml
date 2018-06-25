@@ -1,9 +1,13 @@
 AllCops:
   TargetRubyVersion: '2.2'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'stock_shaker.gemspec'
+
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
-  Max: 80
+  Max: 100
 
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class

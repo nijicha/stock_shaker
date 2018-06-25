@@ -38,6 +38,10 @@ We supported
 - Ruby MRI 2.2+
 - Rails 5.0+
 
+## Need helps!
+- Contributed this gems!
+- Write Test!
+
 ## TODO
 
 ### Core
