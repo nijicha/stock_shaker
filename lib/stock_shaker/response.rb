@@ -5,18 +5,17 @@
 # ISP : API Service Provider Error
 # ISV : API Request Client Error
 # SYSTEM : Lazop platform Error
-#
-# NOTE: this class currently unused
+
 module StockShaker
   class Response
     attr_reader :type, :code, :message, :body, :request_id
 
-    def initialize(type, code, message, r_id, body)
-      @type = type
-      @code = code
-      @message = message
-      @body = body
-      @request_id = r_id
+    def initialize(object)
+      @type = object['type']
+      @code = object['code']
+      @message = object['message']
+      @body = object['body']
+      @request_id = object['request_id']
     end
 
     def success?

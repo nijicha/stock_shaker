@@ -47,6 +47,8 @@ We supported
 ### Core
 
 - [ ] Write TDD with Rspec
+- [ ] Logger
+- [ ] Sentry.io Integration
 
 ### Lazada
 

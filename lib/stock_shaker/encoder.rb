@@ -6,9 +6,29 @@ require 'cgi'
 module StockShaker
   class Encoder
 
+    def self.do_signature_base_string(common_params, api_params, api_name)
+      params = api_params.nil? ? common_params : common_params.merge(api_params)
+      sort_arrays = params.sort_by { |k, v| k.to_s }
+
+      sign_base_string = ''
+      sign_base_string += api_name
+      sort_arrays.each do |k, v|
+        sign_base_string += k.to_s
+        sign_base_string += v.to_s
+      end
+
+      sign_base_string
+
+      query_string = parameters.merge(basic_params).to_query
+      signature =
+      request_url = api_url + '?' + query_string + '&Signature=' + signature
+      puts request_url
+      JSON.parse(reliable_open(request_url).read)
+    end
+
     # Use HMAC-SHA256 for encoded
     # word 'sign' is a 'signature'
-    # Lazada
+    # Lazada : https://open.lazada.com/doc/doc.htm?spm=a2o9m.11193531.0.0.40ed6bbemuDwkW#?nodeId=10451&docId=108069
     # - return value must to .upcase
     # - sign_base_string is sorted by key params and
     #   merged params of (common params | api_params)
@@ -22,14 +42,6 @@ module StockShaker
 
       # return encoded signature string
       OpenSSL::HMAC.hexdigest(sign_digest, app_secret, sign_base_string)
-    end
-
-    def self.do_query_string(api_params)
-      raise 'StockShaker::Encoder.do_query_string api_params is nil' if api_params.nil?
-
-      # return escaped query string
-      query_string = api_params.map { |k, v| "#{k}=#{v}" }.join('&')
-      CGI.escape(query_string)
     end
   end
 end
