@@ -1,3 +1,7 @@
+0.1.4 - 0.15 / 2018-07-09
+------------------
+- Change path of require class in spec files
+
 0.1.3 / 2018-07-09
 ------------------
 - Change structure
