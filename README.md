@@ -31,7 +31,12 @@ Or install it yourself as:
 
 ## Usage
 
-1. create callback for retrieve callback from Lazada Open Platform
+# TODO Write WIKI for this
+- Create callback for retrieve callback from Lazada Open Platform
+1. `rails generate controller LazadaOpenPlatformController`
+2. Add `lazada_callback method`
+3. Add routes.rb for lazada_callback
+4. ....
 
 - SystemAPI::Generate Access Token
 ```ruby
