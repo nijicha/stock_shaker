@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require 'stock_shaker/lazada_open_platform/client'
+require 'stock_shaker/lazada_open_platform/request'
+require 'stock_shaker/lazada_open_platform/response'
+
 module StockShaker
-  class LazadaOpenPlatform
+  module LazadaOpenPlatform
     API_AUTHORIZATION_URL = 'https://auth.lazada.com/rest'.freeze
     API_GATEWAY_URL_SG = 'https://api.lazada.sg/rest'.freeze
     API_GATEWAY_URL_MY = 'https://api.lazada.com.my/rest'.freeze

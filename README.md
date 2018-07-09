@@ -31,7 +31,50 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. create callback for retrieve callback from Lazada Open Platform
+
+- SystemAPI::Generate Access Token
+```ruby
+url = LazadaOpenPlatform::API_AUTHORIZATION_URL
+app_key = 'YOUR_APP_KEY'
+app_secret = 'YOUR_APP_SECRET'
+
+client = LazadaOpenPlatform::Client.new(url, app_key, app_secret)
+request = LazadaOpenPlatform::Request.new('/auth/token/create')
+request.add_api_params("code", 'AUTHORIZATION_CODE')
+request.add_api_params("uuid", "38284839234")
+response = client.execute(request)
+puts response.success?
+puts response.body # retrieve access_token and refresh_token
+```
+
+- OrderAPI::GetOrders
+
+```ruby
+url = LazadaOpenPlatform::API_GATEWAY_URL_TH
+app_key = 'YOUR_APP_KEY'
+app_secret = 'YOUR_APP_SECRET'
+access_token = 'YOUR_ACCESS_TOKEN'
+
+# Get orders since last two days by update_after
+update_after = Utility.datetime_to_iso8601_format(DateTime.now.beginning_of_day - 2.days)
+
+client = LazadaOpenPlatform::Client.new(url, app_key, app_secret)
+request = LazadaOpenPlatform::Request.new('/orders/get','GET')
+request.add_api_params("created_before", "2018-02-10T16:00:00+08:00")
+request.add_api_params("created_after", "2017-02-10T09:00:00+08:00")
+request.add_api_params("status", "shipped")
+request.add_api_params("update_before", "2018-02-10T16:00:00+08:00")
+request.add_api_params("sort_direction", "DESC")
+request.add_api_params("offset", "0")
+request.add_api_params("limit", "10")
+request.add_api_params("update_after", update_after)
+request.add_api_params("sort_by", "updated_at")
+response = client.execute(request, access_token)
+puts response.success?
+puts response.body
+```
+- See more: [Lazada Open Platform Documentation](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/order/document/get)
 
 ## Compatibility
 We supported
@@ -51,18 +94,25 @@ We supported
 - [ ] Sentry.io Integration
 
 ### Lazada
+See more: [Lazada Open Platform Documentation](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/order/document/get)
 
 - [ ] Integrate with API reference
 - [ ] Order API
+    - [x] GetOrders
+    - [x] GetMultipleOrderItems
 - [ ] Product API
+    - [x] GetProducts
+    - [x] UpdatePriceQuantity
 - [ ] Finance API
 - [ ] Logistics API
 - [ ] Seller API
 - [x] System API
+    - [x] Generate Access Token
+    - [x] Refresh Access Token
 - [ ] DataMoat API
 
 ### Shopee
-
+See more: [Shopee Open Platform Documentation](https://open.shopee.com/documents)
 - [ ] Integrate with API reference
 
 ### JD Central
@@ -70,19 +120,15 @@ We supported
 - [ ] Integrate with API reference
 
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+1. `git clone https://github.com/nijicha/stock_shaker.git`
+2. `bundle install`
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/stock_shaker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at [https://github.com/nijicha/stock_shaker](https://github.com/nijicha/stock_shaker).
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the StockShaker project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/stock_shaker/blob/master/CODE_OF_CONDUCT.md).
