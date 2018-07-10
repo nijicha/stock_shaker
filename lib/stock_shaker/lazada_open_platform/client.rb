@@ -30,7 +30,11 @@ module StockShaker
 
         obj = nil
         begin
-          obj = perform_rest_client(rest_url, request.http_method, request.api_params, request.header_params, request.file_params)
+          obj = if request.http_method.eql?('POST') || !request.file_params.blank?
+                  perform_post(rest_url, request.api_params, request.header_params, request.file_params)
+                else
+                  perform_get(rest_url, request.api_params, request.header_params)
+                end
         rescue StandardError => e
           raise "#{rest_url}, HTTP_ERROR, #{e.message}"
         end
@@ -57,14 +61,26 @@ module StockShaker
       end
 
       # TODO: implement API with file_params usages
-      def perform_rest_client(url, http_method, api_params, header_params, file_params = nil)
-        # all_params = http_method.eql?('POST') && !file_params.blank? ? api_params.merge(get_file_params(file_params)) : api_params
-
+      def perform_get(url, api_params, header_params)
+        query_params = api_params.blank? ? '' : api_params.to_query
         response = RestClient::Request.execute(
-          method: http_method.downcase.to_sym,
-          url: "#{url}&#{api_params.to_query}",
+          method: :get,
+          url: "#{url}&#{query_params}",
           timeout: 10,
           headers: header_params
+        )
+        JSON.parse(response)
+      end
+
+      def perform_post(url, api_params, header_params, file_params = nil)
+        # all_params = http_method.eql?('POST') && !file_params.blank? ? api_params.merge(get_file_params(file_params)) : api_params
+
+        merge_params = api_params.merge(header_params)
+        response = RestClient::Request.execute(
+          method: :post,
+          url: url,
+          timeout: 10,
+          headers: merge_params
         )
         JSON.parse(response)
       end
