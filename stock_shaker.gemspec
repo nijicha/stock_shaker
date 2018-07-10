@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.2.0'
   spec.authors = ['Nathakorn Chaninthanadecha']
   spec.email = ['nathakorn.tonch@gmail.com']
+
+  spec.homepage = 'https://github.com/nijicha/stock_shaker'
   spec.license = 'MIT'
   spec.summary = <<-SUMMARY
     Kick off API for eCommerce in Thailand.
