@@ -75,12 +75,11 @@ module StockShaker
       def perform_post(url, api_params, header_params, file_params = nil)
         # all_params = http_method.eql?('POST') && !file_params.blank? ? api_params.merge(get_file_params(file_params)) : api_params
 
-        merge_params = api_params.merge(header_params)
         response = RestClient::Request.execute(
           method: :post,
           url: url,
           timeout: 10,
-          headers: merge_params
+          headers: api_params
         )
         JSON.parse(response)
       end
