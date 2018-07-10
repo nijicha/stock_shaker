@@ -12,7 +12,7 @@ module StockShaker
         @http_method = http_method
         @timestamp = (Time.now.to_f * 1000).to_i
         @api_params = {}
-        @header_params = { content_type: :json, accept: :json }
+        @header_params = {}
         @file_params = {}
 
         validate!
