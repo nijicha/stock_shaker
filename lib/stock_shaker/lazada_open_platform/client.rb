@@ -76,9 +76,9 @@ module StockShaker
         query_params = api_params.blank? ? '' : api_params.to_query
         response = RestClient::Request.execute(
           method: :get,
-          url: url,
+          url: "#{url}&#{query_params}",
           timeout: 10,
-          headers: query_params
+          headers: header_params
         )
         JSON.parse(response)
       end
@@ -91,9 +91,9 @@ module StockShaker
         query_params = api_params.blank? ? '' : api_params.to_query
         response = RestClient::Request.execute(
           method: :post,
-          url: url,
+          url: "#{url}&#{query_params}",
           timeout: 10,
-          headers: query_params
+          headers: header_params
         )
         JSON.parse(response)
       end
