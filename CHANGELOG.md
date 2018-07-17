@@ -1,3 +1,7 @@
+0.2.0 / 2018-07-17
+------------------
+- parsing `api_params` to `query_params`
+
 0.1.9 / 2018-07-17
 ------------------
 - Modified `common_params` when create `@rest_url`. Currently we can't use method `to_query` for parsing `common_params` hash to query string.
