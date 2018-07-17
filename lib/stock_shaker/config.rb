@@ -12,12 +12,16 @@ module StockShaker
   end
 
   class Config
-    attr_accessor :partner_id, :secret_key, :redirect_url
+    attr_accessor :lazada_app_key, :lazada_app_secret, :lazada_redirect_url,
+                  :shopee_partner_id, :shopee_secret_key, :shopee_redirect_url
 
     def initialize
-      @partner_id = nil
-      @secret_key = nil
-      @redirect_url = nil
+      @lazada_app_key = nil
+      @lazada_app_secret = nil
+      @lazada_redirect_url = nil
+      @shopee_partner_id = nil
+      @shopee_secret_key = nil
+      @shopee_secret_key = nil
     end
   end
 end
