@@ -6,7 +6,7 @@ require 'stock_shaker/lazada_open_platform/response'
 
 module StockShaker
   module LazadaOpenPlatform
-    API_AUTHORIZATION_URL = 'https://auth.lazada.com/oauth/authorize'.freeze
+    API_AUTHORIZE_URL = 'https://auth.lazada.com/oauth/authorize'.freeze
     API_AUTHENTICATION_URL = 'https://auth.lazada.com/rest'.freeze
     API_GATEWAY_URL_SG = 'https://api.lazada.sg/rest'.freeze
     API_GATEWAY_URL_MY = 'https://api.lazada.com.my/rest'.freeze
@@ -16,8 +16,7 @@ module StockShaker
     API_GATEWAY_URL_ID = 'https://api.lazada.co.id/rest'.freeze
 
     def self.generate_authorization_link
-
-      authorization_url = API_AUTHORIZATION_URL
+      authorization_url = API_AUTHORIZE_URL
       app_key = StockShaker.config.lazada_app_key
       redirect_url = StockShaker.config.lazada_redirect_url
 
