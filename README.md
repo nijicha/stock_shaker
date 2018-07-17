@@ -10,7 +10,7 @@ A gems used to kick off API for eCommerce in Thailand. This gems inspired from [
 **StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'stock_shaker', '~> 0.1.8'
+gem 'stock_shaker', '~> 0.1.9'
 ```
 
 If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
@@ -20,7 +20,7 @@ You need to add `openssl` as dependencies in `Gemfile`
 ```ruby
 # Gemfile
  
-gem 'stock_shaker', '~> 0.1.8'
+gem 'stock_shaker', '~> 0.1.9'
 gem 'openssl'
 ```
 
