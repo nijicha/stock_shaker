@@ -82,7 +82,7 @@ end
     ```
 
 - OrderAPI
-    - [GetOrders](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/order/document/get)
+    - [GetOrders](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/orders/get)
     
     ```ruby
     server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
