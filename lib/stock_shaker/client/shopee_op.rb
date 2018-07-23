@@ -10,8 +10,8 @@ module StockShaker
 
       def initialize(server_url, shop_id)
         @common_params = {
-          shopid: shop_id,
-          partner_id: StockShaker.config.shopee_config.partner_id,
+          shopid: shop_id.to_i,
+          partner_id: StockShaker.config.shopee_config.partner_id.to_i,
           timestamp: DateTime.now.to_time.to_i
         }
         @server_url = server_url
