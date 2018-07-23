@@ -8,5 +8,9 @@ module StockShaker
       time_format = '%Y-%m-%dT%H:%M:%S'
       datetime.strftime(time_format)
     end
+
+    def self.datetime_to_timestamp(datetime)
+      datetime.to_time.to_i
+    end
   end
 end

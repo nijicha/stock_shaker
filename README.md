@@ -36,7 +36,11 @@ Or install it yourself as:
 
 ### Configurable
 
+- Create `stock_shaker_config.rb` in `config/initializer`
+- Please ensure you already configured it.
+
 ```ruby
+# config/initializer/stock_shaker_config.rb
 StockShaker.configure do |config|
   # Lazada Configuration
   config.lazada_config.app_key = ENV['YOUR_LAZADA_APP_KEY']
@@ -59,7 +63,7 @@ end
     server_url = StockShaker::Client::LAZADA_API_AUTH_URL
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
     lazada_request = StockShaker::Request.new('/auth/token/create')
-    lazada_request.add_api_params('code', 'YOUR_AUTHORIZATION_CODE')
+    lazada_request.api_params = { code: 'YOUR_AUTHORIZATION_CODE' }
     response = lazada_client.execute(lazada_request)
     response.success?
     response.body # retrieve access_token and refresh_token
@@ -71,7 +75,7 @@ end
     server_url = StockShaker::Client::LAZADA_API_AUTH_URL
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
     lazada_request = StockShaker::Request.new('/auth/token/refresh')
-    lazada_request.add_api_params('refresh_token', 'YOUR_REFRESH_TOKEN')
+    lazada_request.api_params = { refresh_token: 'YOUR_REFRESH_TOKEN' }
     response = lazada_client.execute(lazada_request)
     response.success?
     response.body # retrieve new access_token and refresh_token
@@ -89,18 +93,46 @@ end
     # Get orders since last two days by update_after
     days_backwards = 2 # Get backwards 2 days
     update_after = StockShaker::Utility.datetime_to_iso8601(DateTime.now.beginning_of_day - days_backwards.days)
+  
+    lazada_request.api_params = { 
+      created_before: '2018-02-10T16:00:00+07:00',
+      created_after: '2017-02-10T09:00:00+07:00',
+      status: 'shipped',
+      update_before: '2018-02-10T16:00:00+07:00',
+      sort_direction: 'DESC',
+      offset: 0,
+      limit: 100,
+      update_after: update_after,
+      sort_by: 'updated_at'
+    }
 
-    lazada_request.add_api_params('created_before', '2018-02-10T16:00:00+07:00')
-    lazada_request.add_api_params('created_after', '2017-02-10T09:00:00+07:00')
-    lazada_request.add_api_params('status', 'shipped')
-    lazada_request.add_api_params('update_before', '2018-02-10T16:00:00+07:00')
-    lazada_request.add_api_params('sort_direction', 'DESC')
-    lazada_request.add_api_params('offset', '0')
-    lazada_request.add_api_params('limit', '10')
-    lazada_request.add_api_params('update_after', update_after)
-    lazada_request.add_api_params('sort_by', 'updated_at')
     response = lazada_client.execute(lazada_request)
     puts response.success?
+    puts response.body
+    ```
+
+### Shopee Open Platform
+- OrderAPI
+    - [GetOrdersList](https://open.shopee.com/documents?module=4&type=1&id=399)
+    
+    ```ruby
+    server_url = StockShaker::Client::SHOPEE_API_GATEWAY_URL_TH
+    shop_id = ENV['YOUR_SHOP_ID']
+    
+    update_time_from = StockShaker::Utility.datetime_to_timestamp(DateTime.now.beginning_of_day - 2.days)
+    update_time_to = StockShaker::Utility.datetime_to_timestamp(DateTime.now)
+    
+    client = StockShaker::Client::ShopeeOP.new(server_url, shop_id)
+    request = StockShaker::Request.new('/orders/basics', :post)
+    
+    request.api_params = {
+      update_time_from: update_time_from,
+      update_time_to: update_time_to,
+      pagination_entries_per_page: 100,
+      pagination_offset: 0
+    }
+    
+    response = client.execute(request)
     puts response.body
     ```
 

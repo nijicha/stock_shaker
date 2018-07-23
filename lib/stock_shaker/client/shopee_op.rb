@@ -19,8 +19,8 @@ module StockShaker
         validates!
       end
 
-      def execute(request, api_params)
-        request_params = api_params.merge(@common_params).to_json
+      def execute(request)
+        request_params = @common_params.merge(request.api_params).to_json
         @rest_url = "#{@server_url}#{request.api_name}"
 
         signature = do_signature(@rest_url, request_params)
@@ -31,15 +31,15 @@ module StockShaker
         perform(@rest_url, request, request_params)
       end
 
-      def do_signature(rest_url, api_params)
-        signature_base_string = "#{rest_url}|#{api_params}"
+      def do_signature(rest_url, request_params)
+        signature_base_string = "#{rest_url}|#{request_params}"
         OpenSSL::HMAC.hexdigest('SHA256', StockShaker.config.shopee_config.secret_key, signature_base_string)
       end
 
-      def perform(url, request, api_params)
+      def perform(url, request, request_params)
         response = RestClient::Request.execute(
           method: request.http_method,
-          payload: api_params,
+          payload: request_params,
           url: url,
           timeout: 10,
           headers: request.header_params

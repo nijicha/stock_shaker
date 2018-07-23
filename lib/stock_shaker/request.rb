@@ -2,7 +2,8 @@
 
 module StockShaker
   class Request
-    attr_reader :api_name, :http_method, :api_params, :header_params
+    attr_accessor :api_params
+    attr_reader :api_name, :http_method, :header_params
 
     def initialize(api_name = nil, http_method = :post)
       @api_name = api_name
@@ -11,12 +12,6 @@ module StockShaker
       @header_params = {}
 
       validate!
-    end
-
-    def add_api_params(key, value)
-      raise 'api param key is not String' unless key.is_a? String
-      raise 'api param value is not String' unless value.is_a? String
-      @api_params[key] = value
     end
 
     def add_header_params(key, value)
