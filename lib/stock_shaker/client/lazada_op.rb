@@ -28,17 +28,6 @@ module StockShaker
         raise "#{@rest_url}, HTTP_ERROR, #{err.message}"
       end
 
-      def do_authorization_link
-        params = {
-          response_type: 'code',
-          force_auth: true,
-          client_id: StockShaker.config.lazada_config.app_key,
-          redirect_uri: StockShaker.config.lazada_config.redirect_url
-        }
-
-        "#{parent::LAZADA_API_AUTH_URL}?#{params.to_query}"
-      end
-
       def do_signature(api_params, api_name)
         params = api_params.nil? ? common_params : common_params.merge(api_params)
         sort_arrays = params.sort_by { |k, v| k.to_s }
@@ -83,6 +72,17 @@ module StockShaker
 
       def validates!
         raise 'server_url is required' unless @server_url
+      end
+
+      def self.do_authorization_link
+        params = {
+          response_type: 'code',
+          force_auth: true,
+          client_id: StockShaker.config.lazada_config.app_key,
+          redirect_uri: StockShaker.config.lazada_config.redirect_url
+        }
+
+        "#{StockShaker::Client::LAZADA_API_AUTH_URL}?#{params.to_query}"
       end
     end
   end
