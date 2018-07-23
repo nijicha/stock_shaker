@@ -1,9 +1,9 @@
-# StockShaker
+# StockShaker - Unofficial Rubygems for Thailand eCommerce Marketplace
 
 [![Gem Version](https://badge.fury.io/rb/stock_shaker.svg)](https://badge.fury.io/rb/stock_shaker)
 [![Build Status](https://travis-ci.org/nijicha/stock_shaker.svg?branch=master)](https://travis-ci.org/nijicha/stock_shaker)
 
-A gems used to kick off API for eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)
+A gems used to kick off API of eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)
 
 ## Installation
 
@@ -26,7 +26,7 @@ gem 'openssl'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -34,55 +34,75 @@ Or install it yourself as:
 
 ## Usage
 
-# TODO Write WIKI for this
-- Create callback for retrieve callback from Lazada Open Platform
-1. `rails generate controller LazadaOpenPlatformController`
-2. Add `lazada_callback method`
-3. Add routes.rb for lazada_callback
-4. ....
-
-- SystemAPI::Generate Access Token
-```ruby
-url = LazadaOpenPlatform::API_AUTHORIZATION_URL
-app_key = 'YOUR_APP_KEY'
-app_secret = 'YOUR_APP_SECRET'
-
-client = LazadaOpenPlatform::Client.new(url, app_key, app_secret)
-request = LazadaOpenPlatform::Request.new('/auth/token/create')
-request.add_api_params("code", 'AUTHORIZATION_CODE')
-request.add_api_params("uuid", "38284839234")
-response = client.execute(request)
-puts response.success?
-puts response.body # retrieve access_token and refresh_token
-```
-
-- OrderAPI::GetOrders
+### Configurable
 
 ```ruby
-url = LazadaOpenPlatform::API_GATEWAY_URL_TH
-app_key = 'YOUR_APP_KEY'
-app_secret = 'YOUR_APP_SECRET'
-access_token = 'YOUR_ACCESS_TOKEN'
+StockShaker.configure do |config|
+  # Lazada Configuration
+  config.lazada_config.app_key = ENV['YOUR_LAZADA_APP_KEY']
+  config.lazada_config.app_secret_key = ENV['YOUR_LAZADA_APP_SECRET_KEY']
+  config.lazada_config.redirect_url = ENV['YOUR_LAZADA_REDIRECT_URL']
 
-# Get orders since last two days by update_after
-update_after = Utility.datetime_to_iso8601_format(DateTime.now.beginning_of_day - 2.days)
-
-client = LazadaOpenPlatform::Client.new(url, app_key, app_secret)
-request = LazadaOpenPlatform::Request.new('/orders/get','GET')
-request.add_api_params("created_before", "2018-02-10T16:00:00+08:00")
-request.add_api_params("created_after", "2017-02-10T09:00:00+08:00")
-request.add_api_params("status", "shipped")
-request.add_api_params("update_before", "2018-02-10T16:00:00+08:00")
-request.add_api_params("sort_direction", "DESC")
-request.add_api_params("offset", "0")
-request.add_api_params("limit", "10")
-request.add_api_params("update_after", update_after)
-request.add_api_params("sort_by", "updated_at")
-response = client.execute(request, access_token)
-puts response.success?
-puts response.body
+  # Shopee Configuration
+  config.shopee_config.partner_id = ENV['YOUR_SHOPEE_PARTNER_ID']
+  config.shopee_config.secret_key = ENV['YOUR_SHOPEE_SECRET_KEY']
+  config.shopee_config.redirect_url = ENV['YOUR_SHOPEE_REDIRECT_URL']
+end
 ```
-- See more: [Lazada Open Platform Documentation](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/order/document/get)
+
+### Lazada Open Platform
+
+- SystemAPI
+    - [Generate `access_token`](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/create)
+
+    ```ruby
+    server_url = StockShaker::Client::LAZADA_API_AUTH_URL
+    lazada_client = StockShaker::Client::LazadaOP.new(server_url)
+    lazada_request = StockShaker::Request.new('/auth/token/create')
+    lazada_request.add_api_params('code', 'YOUR_AUTHORIZATION_CODE')
+    response = lazada_client.execute(lazada_request)
+    response.success?
+    response.body # retrieve access_token and refresh_token
+    ```
+
+    - [Refresh `access_token`](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/refresh)
+
+    ```ruby
+    server_url = StockShaker::Client::LAZADA_API_AUTH_URL
+    lazada_client = StockShaker::Client::LazadaOP.new(server_url)
+    lazada_request = StockShaker::Request.new('/auth/token/refresh')
+    lazada_request.add_api_params('refresh_token', 'YOUR_REFRESH_TOKEN')
+    response = lazada_client.execute(lazada_request)
+    response.success?
+    response.body # retrieve new access_token and refresh_token
+    ```
+
+- OrderAPI
+    - [GetOrders](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/order/document/get)
+    
+    ```ruby
+    server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
+    access_token = ENV['YOUR_ACCESS_TOKEN']
+    lazada_client = StockShaker::Client::LazadaOP.new(server_url, access_token)
+    lazada_request = StockShaker::Request.new('/orders/get', :get)
+
+    # Get orders since last two days by update_after
+    days_backwards = 2 # Get backwards 2 days
+    update_after = StockShaker::Utility.datetime_to_iso8601(DateTime.now.beginning_of_day - days_backwards.days)
+
+    lazada_request.add_api_params('created_before', '2018-02-10T16:00:00+07:00')
+    lazada_request.add_api_params('created_after', '2017-02-10T09:00:00+07:00')
+    lazada_request.add_api_params('status', 'shipped')
+    lazada_request.add_api_params('update_before', '2018-02-10T16:00:00+07:00')
+    lazada_request.add_api_params('sort_direction', 'DESC')
+    lazada_request.add_api_params('offset', '0')
+    lazada_request.add_api_params('limit', '10')
+    lazada_request.add_api_params('update_after', update_after)
+    lazada_request.add_api_params('sort_by', 'updated_at')
+    response = lazada_client.execute(lazada_request)
+    puts response.success?
+    puts response.body
+    ```
 
 ## Compatibility
 We supported
@@ -97,7 +117,10 @@ We supported
 
 ### Core
 
-- [ ] Write TDD with Rspec
+- [x] Configurable
+  - [ ] Validation
+- [ ] Generator
+- [ ] Write Rspec
 - [ ] Logger
 - [ ] Sentry.io Integration
 
@@ -122,6 +145,8 @@ See more: [Lazada Open Platform Documentation](https://open.lazada.com/doc/api.h
 ### Shopee
 See more: [Shopee Open Platform Documentation](https://open.shopee.com/documents)
 - [ ] Integrate with API reference
+- OrderAPI
+  - [x] GetOrdersList
 
 ### JD Central
 

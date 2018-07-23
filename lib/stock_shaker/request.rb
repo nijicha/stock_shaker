@@ -4,7 +4,7 @@ module StockShaker
   class Request
     attr_reader :api_name, :http_method, :api_params, :header_params
 
-    def initialize(api_name = nil, http_method = 'POST')
+    def initialize(api_name = nil, http_method = :post)
       @api_name = api_name
       @http_method = http_method
       @api_params = {}

@@ -1,4 +1,4 @@
-require 'stock_shaker/lazada_open_platform/request'
+require 'stock_shaker/request'
 
 # TODO: Write the test!!!
 RSpec.describe StockShaker::Request do
