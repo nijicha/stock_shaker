@@ -84,10 +84,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
 
 ### Lazada Open Platform
 
-- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/lazada_api-system--api-yellow.svg?raw=true" alt="SystemAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/lazada/lazada_api-system--api-yellow.svg" alt="SystemAPI" />
 
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/create">
-        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/generate_access_token.svg?raw=true" alt="Generate Access Token" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/lazada/generate_access_token.svg" alt="Generate Access Token" />
       </a>
 
     ```ruby
@@ -102,7 +102,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     ```
     
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/refresh">
-        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/refresh_access_token.svg?raw=true" alt="Refresh Access Token" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/lazada/refresh_access_token.svg" alt="Refresh Access Token" />
       </a>
 
     ```ruby
@@ -116,10 +116,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     response.body
     ```
 
-- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/lazada_api-order--api-yellow.svg?raw=true" alt="Lazada OrderAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/lazada/lazada_api-order--api-yellow.svg" alt="Lazada OrderAPI" />
 
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/orders/get">
-        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/get_orders-get-green.svg?raw=true" alt="OrderAPI GetOrders" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/lazada/get_orders-get-green.svg" alt="OrderAPI GetOrders" />
       </a>
     
     ```ruby
@@ -152,10 +152,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
 
 ### Shopee Open Platform
 
-- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/shopee/shopee_api-order--api-yellow.svg?raw=true" alt="Shopee OrderAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/shopee/shopee_api-order--api-yellow.svg" alt="Shopee OrderAPI" />
 
     - <a href="https://open.shopee.com/documents?module=4&type=1&id=399">
-        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/shopee/get_orders_list-post-green.svg?raw=true" alt="OrderAPI GetOrdersList" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/shopee/get_orders_list-post-green.svg" alt="OrderAPI GetOrdersList" />
       </a>
     
     ```ruby
