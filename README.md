@@ -12,6 +12,10 @@
     <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby"></a>
     <a href="https://shields.io/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/made_with-shield_io-green.svg" alt="Shield.io Made with shield.io" /></a>
   </p>
+  <p align="center">
+    <a href="https://www.lazada.co.th/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/market_place_support/love-lazada-sky-blue.svg" alt="Love Lazada" /></a>
+    <a href="https://www.lazada.co.th/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/market_place_support/love-shopee-orange.svg" alt="Love Shopee" /></a>
+  </p>
 </p>
 
 A gems used to kick off API of eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)

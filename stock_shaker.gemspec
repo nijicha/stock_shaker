@@ -18,8 +18,7 @@ Gem::Specification.new do |spec|
     Kick off API for eCommerce in Thailand.
   SUMMARY
   spec.description = <<-DESCRIPTION
-    This gems inspired from Official Lazada Open Platform Gems.
-    This will kick off an APIs of Lazada, Shopee and JD Central.
+    Unofficial Rubygems for Thailand eCommerce Marketplace.
   DESCRIPTION
 
   spec.metadata = {
