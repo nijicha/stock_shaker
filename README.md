@@ -14,7 +14,7 @@
   </p>
   <p align="center">
     <a href="https://www.lazada.co.th/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/market_place_support/love-lazada-sky-blue.svg" alt="Love Lazada" /></a>
-    <a href="https://www.lazada.co.th/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/market_place_support/love-shopee-orange.svg" alt="Love Shopee" /></a>
+    <a href="https://www.shopee.co.th/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/market_place_support/love-shopee-orange.svg" alt="Love Shopee" /></a>
   </p>
 </p>
 
@@ -25,7 +25,7 @@ A gems used to kick off API of eCommerce in Thailand. This gems inspired from [O
 **StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'stock_shaker', '~> 0.2.7'
+gem 'stock_shaker', '~> 0.2.8'
 ```
 
 If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
@@ -35,7 +35,7 @@ You need to add `openssl` as dependencies in `Gemfile`
 ```ruby
 # Gemfile
  
-gem 'stock_shaker', '~> 0.2.7'
+gem 'stock_shaker', '~> 0.2.8'
 gem 'openssl'
 ```
 
