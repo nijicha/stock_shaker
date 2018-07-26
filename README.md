@@ -1,7 +1,18 @@
-# StockShaker - Unofficial Rubygems for Thailand eCommerce Marketplace
-
-[![Gem Version](https://badge.fury.io/rb/stock_shaker.svg)](https://badge.fury.io/rb/stock_shaker)
-[![Build Status](https://travis-ci.org/nijicha/stock_shaker.svg?branch=master)](https://travis-ci.org/nijicha/stock_shaker)
+<p align="center">
+  <img src="https://github.com/nijicha/stock_shaker/blob/master/media/icon.png?raw=true" height="120" />
+  <h3 align="center">Stock Shaker</h3>
+  <p align="center">Unofficial Rubygems for Thailand eCommerce Marketplace</p>
+  
+  <p align="center">
+    <a href="https://badge.fury.io/rb/stock_shaker"><img src="https://badge.fury.io/rb/stock_shaker@2x.png" alt="Gem Version" height="18"></a>
+    <a href="https://travis-ci.org/nijicha/stock_shaker"><img src="https://travis-ci.org/nijicha/stock_shaker.svg?branch=master" alt="Gem Version" height="18"></a>
+  </p>
+  <p align="center">
+    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="For The Badge Built with Love"></a>
+    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby"></a>
+    <a href="https://shields.io/"><img src="https://img.shields.io/badge/made_with-shield%2Eio-green.svg?longCache=true&style=for-the-badge" alt="Shield.io Made with shield.io"></a>
+  </p>
+</p>
 
 A gems used to kick off API of eCommerce in Thailand. This gems inspired from [Official Lazada Open Platform Gems](https://rubygems.org/gems/lazop_api_client/versions/1.2.5)
 
@@ -10,7 +21,7 @@ A gems used to kick off API of eCommerce in Thailand. This gems inspired from [O
 **StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'stock_shaker', '~> 0.2.3'
+gem 'stock_shaker', '~> 0.2.7'
 ```
 
 If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
@@ -20,7 +31,7 @@ You need to add `openssl` as dependencies in `Gemfile`
 ```ruby
 # Gemfile
  
-gem 'stock_shaker', '~> 0.2.3'
+gem 'stock_shaker', '~> 0.2.7'
 gem 'openssl'
 ```
 
@@ -53,48 +64,75 @@ StockShaker.configure do |config|
   config.shopee_config.redirect_url = ENV['YOUR_SHOPEE_REDIRECT_URL']
 end
 ```
+### Do Authorization Link <img src="https://img.shields.io/badge/stock_shaker-new-orange.svg?longCache=true&style=for-the-badge" alt="New API" />
+
+<b>* You should be define the `StockShaker.configure` before typing this command.</b>
+
+#### Lazada
+```ruby
+StockShaker::Client::LazadaOP.do_authorization_link
+
+=> "https://auth.lazada.com/oauth/authorize?client_id=YOUR_LAZADA_APP_KEY&force_auth=true&redirect_uri=YOUR_LAZADA_REDIRECT_URL&response_type=code"
+```
+
+#### Shopee
+```ruby
+StockShaker::Client::ShopeeOP.do_authorization_link
+
+=> "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id=YOUR_SHOPEE_PARTNER_ID&redirect=YOUR_SHOPEE_REDIRECT_URL&token=AUTHORIZATION_TOKEN"
+```
 
 ### Lazada Open Platform
 
-- SystemAPI
-    - [Generate `access_token`](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/create)
+- <img src="https://img.shields.io/badge/lazada_api-system--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+
+    - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/create">
+        <img src="https://img.shields.io/badge/generate_access_token-get%2Fpost-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+      </a>
 
     ```ruby
-    server_url = StockShaker::Client::LAZADA_API_AUTH_URL
+    server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
-    lazada_request = StockShaker::Request.new('/auth/token/create')
-    lazada_request.api_params = { code: 'YOUR_AUTHORIZATION_CODE' }
+    lazada_request = StockShaker::Request.new('/auth/token/create', :post)
+    lazada_request_params = { code: 'YOUR_AUTHORIZATION_CODE' }
+    lazada_request_params.each { |key, value| request.add_lazada_api_params(key.to_s, value.to_s) }
     response = lazada_client.execute(lazada_request)
     response.success?
-    response.body # retrieve access_token and refresh_token
+    response.body
     ```
-
-    - [Refresh `access_token`](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/refresh)
+    
+    - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/refresh">
+        <img src="https://img.shields.io/badge/refresh_access_token-get%2Fpost-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+      </a>
 
     ```ruby
-    server_url = StockShaker::Client::LAZADA_API_AUTH_URL
+    server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
-    lazada_request = StockShaker::Request.new('/auth/token/refresh')
-    lazada_request.api_params = { refresh_token: 'YOUR_REFRESH_TOKEN' }
+    lazada_request = StockShaker::Request.new('/auth/token/refresh', :post)
+    lazada_request_params = { refresh_token: 'YOUR_REFRESH_TOKEN' }
+    lazada_request_params.each { |key, value| request.add_lazada_api_params(key.to_s, value.to_s) }
     response = lazada_client.execute(lazada_request)
     response.success?
-    response.body # retrieve new access_token and refresh_token
+    response.body
     ```
 
-- OrderAPI
-    - [GetOrders](https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/orders/get)
+- <img src="https://img.shields.io/badge/lazada_api-order--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+
+    - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/orders/get">
+        <img src="https://img.shields.io/badge/get_orders-get-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+      </a>
     
     ```ruby
     server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     access_token = ENV['YOUR_ACCESS_TOKEN']
-    lazada_client = StockShaker::Client::LazadaOP.new(server_url, access_token)
+    lazada_client = StockShaker::Client::LazadaOP.new(server_url)
     lazada_request = StockShaker::Request.new('/orders/get', :get)
 
     # Get orders since last two days by update_after
     days_backwards = 2 # Get backwards 2 days
     update_after = StockShaker::Utility.datetime_to_iso8601(DateTime.now.beginning_of_day - days_backwards.days)
   
-    lazada_request.api_params = { 
+    lazada_request_params = { 
       created_before: '2018-02-10T16:00:00+07:00',
       created_after: '2017-02-10T09:00:00+07:00',
       status: 'shipped',
@@ -106,14 +144,19 @@ end
       sort_by: 'updated_at'
     }
 
-    response = lazada_client.execute(lazada_request)
+    lazada_request_params.each { |key, value| request.add_lazada_api_params(key.to_s, value.to_s) }
+    response = lazada_client.execute(lazada_request, access_token)
     puts response.success?
     puts response.body
     ```
 
 ### Shopee Open Platform
-- OrderAPI
-    - [GetOrdersList](https://open.shopee.com/documents?module=4&type=1&id=399)
+
+- <img src="https://img.shields.io/badge/shopee_api-order--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+
+    - <a href="https://open.shopee.com/documents?module=4&type=1&id=399">
+        <img src="https://img.shields.io/badge/get_orders-post-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+      </a>
     
     ```ruby
     server_url = StockShaker::Client::SHOPEE_API_GATEWAY_URL_TH

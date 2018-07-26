@@ -52,7 +52,7 @@ module StockShaker
       end
 
       def self.do_authorization_link
-        token_base_string = "#{StockShaker.config.shopee_config.secret_key}#{redirect_url}"
+        token_base_string = "#{StockShaker.config.shopee_config.secret_key}#{StockShaker.config.shopee_config.redirect_url}"
         token = Digest::SHA256.hexdigest(token_base_string)
 
         params = {
