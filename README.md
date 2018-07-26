@@ -10,7 +10,7 @@
   <p align="center">
     <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="For The Badge Built with Love"></a>
     <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby"></a>
-    <a href="https://shields.io/"><img src="https://img.shields.io/badge/made_with-shield%2Eio-green.svg?longCache=true&style=for-the-badge" alt="Shield.io Made with shield.io"></a>
+    <a href="https://shields.io/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/made_with-shield_io-green.svg?raw=true" alt="Shield.io Made with shield.io" /></a>
   </p>
 </p>
 
@@ -84,10 +84,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
 
 ### Lazada Open Platform
 
-- <img src="https://img.shields.io/badge/lazada_api-system--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/lazada_api-system--api-yellow.svg?raw=true" alt="SystemAPI" />
 
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/create">
-        <img src="https://img.shields.io/badge/generate_access_token-get%2Fpost-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/generate_access_token.svg?raw=true" alt="Generate Access Token" />
       </a>
 
     ```ruby
@@ -102,7 +102,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     ```
     
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193487.0.0.3ac413feha8qCs#/api?cid=11&path=/auth/token/refresh">
-        <img src="https://img.shields.io/badge/refresh_access_token-get%2Fpost-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/refresh_access_token.svg?raw=true" alt="Refresh Access Token" />
       </a>
 
     ```ruby
@@ -116,10 +116,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     response.body
     ```
 
-- <img src="https://img.shields.io/badge/lazada_api-order--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/lazada_api-order--api-yellow.svg?raw=true" alt="Lazada OrderAPI" />
 
     - <a href="https://open.lazada.com/doc/api.htm?spm=a2o9m.11193535.0.0.62a738e4DBO8DQ#/api?cid=8&path=/orders/get">
-        <img src="https://img.shields.io/badge/get_orders-get-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/lazada/get_orders-get-green.svg?raw=true" alt="OrderAPI GetOrders" />
       </a>
     
     ```ruby
@@ -152,10 +152,10 @@ StockShaker::Client::ShopeeOP.do_authorization_link
 
 ### Shopee Open Platform
 
-- <img src="https://img.shields.io/badge/shopee_api-order--api-yellow.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+- <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/shopee/shopee_api-order--api-yellow.svg?raw=true" alt="Shopee OrderAPI" />
 
     - <a href="https://open.shopee.com/documents?module=4&type=1&id=399">
-        <img src="https://img.shields.io/badge/get_orders-post-green.svg?longCache=true&style=for-the-badge" alt="SystemAPI" />
+        <img src="https://github.com/nijicha/stock_shaker/blob/media/badge/shopee/get_orders_list-post-green.svg?raw=true" alt="OrderAPI GetOrdersList" />
       </a>
     
     ```ruby
