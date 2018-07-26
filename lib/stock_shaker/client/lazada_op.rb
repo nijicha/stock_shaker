@@ -7,12 +7,11 @@ module StockShaker
     class LazadaOP
       attr_reader :common_params, :server_url, :rest_url
 
-      def initialize(server_url, access_token = nil)
+      def initialize(server_url)
         @common_params = {
           app_key: StockShaker.config.lazada_config.app_key,
           timestamp: (Time.now.to_f * 1000).to_i,
-          sign_method: 'sha256',
-          access_token: access_token
+          sign_method: 'sha256'
         }
         @server_url = server_url
         @rest_url = nil
@@ -20,7 +19,8 @@ module StockShaker
         validates!
       end
 
-      def execute(request)
+      def execute(request, access_token = nil)
+        @common_params[:access_token] = access_token if access_token
         @common_params[:sign] = do_signature(request.api_params, request.api_name)
         @rest_url = do_rest_url(@server_url, request.api_name, @common_params)
         perform(@rest_url, request)
@@ -30,11 +30,11 @@ module StockShaker
 
       def do_signature(api_params, api_name)
         params = api_params.nil? ? common_params : common_params.merge(api_params)
-        sort_arrays = params.sort_by { |k, v| k.to_s }
+        sort_arrays = params.sort_by { |key, _value| key.to_s }
 
         # See signature pattern : https://open.lazada.com/doc/doc.htm?spm=a2o9m.11193531.0.0.40ed6bbemuDwkW#?nodeId=10451&docId=108069
         signature_base_string = api_name.to_s
-        sort_arrays.each { |k, v| signature_base_string += "#{k}#{v}" }
+        sort_arrays.each { |key, value| signature_base_string += "#{key}#{value}" }
 
         sign_digest = OpenSSL::Digest.new('sha256')
         OpenSSL::HMAC.hexdigest(sign_digest, StockShaker.config.lazada_config.app_secret_key, signature_base_string).upcase
