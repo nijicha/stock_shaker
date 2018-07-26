@@ -10,7 +10,7 @@
   <p align="center">
     <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="For The Badge Built with Love"></a>
     <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby"></a>
-    <a href="https://shields.io/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/made_with-shield_io-green.svg?raw=true" alt="Shield.io Made with shield.io" /></a>
+    <a href="https://shields.io/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/made_with-shield_io-green.svg" alt="Shield.io Made with shield.io" /></a>
   </p>
 </p>
 
@@ -64,7 +64,7 @@ StockShaker.configure do |config|
   config.shopee_config.redirect_url = ENV['YOUR_SHOPEE_REDIRECT_URL']
 end
 ```
-### Do Authorization Link <img src="https://img.shields.io/badge/stock_shaker-new-orange.svg?longCache=true&style=for-the-badge" alt="New API" />
+### Do Authorization Link <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/stock_shaker-new-orange.svg" alt="NEW API" />
 
 <b>* You should be define the `StockShaker.configure` before typing this command.</b>
 
