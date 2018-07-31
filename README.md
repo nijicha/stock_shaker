@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://rubygems.org/gems/stock_shaker"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/icon.png?raw=true" height="120" /></a>
+  <a href="https://rubygems.org/gems/stock_shaker"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/icon.png?raw=true" height="240" alt="Stock Shaker Logo" /></a>
   <h3 align="center">Stock Shaker</h3>
   <p align="center">Unofficial Rubygems for Thailand eCommerce Marketplace</p>
 
@@ -7,11 +7,11 @@
     <img src="https://img.shields.io/github/stars/nijicha/stock_shaker.svg?style=for-the-badge&label=Stars" alt="Github Stars" >
     <a href="https://rubygems.org/gems/stock_shaker"><img src="https://img.shields.io/gem/v/stock_shaker.svg?style=for-the-badge" alt="Gem Version"></a>
     <a href="https://travis-ci.org/nijicha/stock_shaker"><img src="https://img.shields.io/travis/nijicha/stock_shaker/master.svg?style=for-the-badge" alt="Branch master Travis-ci Build Status"></a>
-    <a href="https://github.com/nijicha/stock_shaker/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/nijicha/stock_shaker.svg?style=for-the-badge" alt="Love Shopee" /></a>
+    <a href="https://github.com/nijicha/stock_shaker/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/nijicha/stock_shaker.svg?style=for-the-badge" alt="License" /></a>
   </p>
   <p align="center">
-    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="For The Badge Built with Love" height="30"></a>
-    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby" height="30"></a>
+    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="For The Badge Built with Love" height="28"></a>
+    <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-ruby.svg" alt="For The Badge Made with Ruby" height="28"></a>
     <a href="https://shields.io/"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/made_with-shield_io-green.svg" alt="Shield.io Made with shield.io" /></a>
   </p>
   <p align="center">
@@ -70,7 +70,9 @@ StockShaker.configure do |config|
   config.shopee_config.redirect_url = ENV['YOUR_SHOPEE_REDIRECT_URL']
 end
 ```
-### Do Authorization Link <img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/stock_shaker-new-orange.svg" alt="NEW API" />
+### Do Authorization Link
+
+<img src="https://github.com/nijicha/stock_shaker/blob/master/media/badge/stock_shaker-new-orange.svg" alt="NEW API" />
 
 <b>* You should be define the `StockShaker.configure` before typing this command.</b>
 
