@@ -1,10 +1,8 @@
 <p align="center">
-  <a href="https://rubygems.org/gems/stock_shaker">
-      <img src="https://github.com/nijicha/stock_shaker/blob/master/media/icon.png?raw=true" height="120" />
-      <h3 align="center">Stock Shaker</h3>
-      <p align="center">Unofficial Rubygems for Thailand eCommerce Marketplace</p>
-  </a>
-  
+  <a href="https://rubygems.org/gems/stock_shaker"><img src="https://github.com/nijicha/stock_shaker/blob/master/media/icon.png?raw=true" height="120" /></a>
+  <h3 align="center">Stock Shaker</h3>
+  <p align="center">Unofficial Rubygems for Thailand eCommerce Marketplace</p>
+
   <p align="center">
     <a href="https://badge.fury.io/rb/stock_shaker"><img src="https://badge.fury.io/rb/stock_shaker@2x.png" alt="Gem Version" height="18"></a>
     <a href="https://travis-ci.org/nijicha/stock_shaker"><img src="https://travis-ci.org/nijicha/stock_shaker.svg?branch=master" alt="Gem Version" height="18"></a>
