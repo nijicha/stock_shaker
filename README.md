@@ -25,7 +25,7 @@ A gems used to kick off API of eCommerce in Thailand. This gems inspired from [O
 **StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'stock_shaker', '~> 0.2.8'
+gem 'stock_shaker', '~> 0.2.9'
 ```
 
 If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
@@ -35,7 +35,7 @@ You need to add `openssl` as dependencies in `Gemfile`
 ```ruby
 # Gemfile
  
-gem 'stock_shaker', '~> 0.2.8'
+gem 'stock_shaker', '~> 0.2.9'
 gem 'openssl'
 ```
 
@@ -172,12 +172,12 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     client = StockShaker::Client::ShopeeOP.new(server_url, shop_id)
     request = StockShaker::Request.new('/orders/basics', :post)
     
-    request.api_params = {
+    request.add_shopee_api_params({
       update_time_from: update_time_from,
       update_time_to: update_time_to,
       pagination_entries_per_page: 100,
       pagination_offset: 0
-    }
+    })
     
     response = client.execute(request)
     puts response.body
