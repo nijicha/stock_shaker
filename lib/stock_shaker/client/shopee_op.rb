@@ -41,10 +41,11 @@ module StockShaker
           method: request.http_method,
           payload: request_params,
           url: url,
-          timeout: 10,
           headers: request.header_params
         )
         JSON.parse(response)
+      rescue StandardError => err
+        err
       end
 
       def validates!
