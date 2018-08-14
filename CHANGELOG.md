@@ -1,4 +1,8 @@
-0.3.0 / 2018-08-3
+0.3.1 / 2018-08-14
+---
+- Return ::Client::ShopeeOP.perform as Object type not a JSON
+
+0.3.0 / 2018-08-03
 ---
 - Merge conflict
 

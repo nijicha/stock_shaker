@@ -37,13 +37,12 @@ module StockShaker
       end
 
       def perform(url, request, request_params)
-        response = RestClient::Request.execute(
+        RestClient::Request.execute(
           method: request.http_method,
           payload: request_params,
           url: url,
           headers: request.header_params
         )
-        JSON.parse(response)
       rescue StandardError => err
         err
       end
