@@ -2,6 +2,7 @@
 
 require 'digest'
 require 'openssl'
+require 'rest-client'
 
 module StockShaker
   module Client
