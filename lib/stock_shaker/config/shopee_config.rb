@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module StockShaker
   class Config
-    # TODO: Add validation
     class ShopeeConfig
       attr_accessor :partner_id, :secret_key, :redirect_url
 

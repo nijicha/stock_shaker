@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module StockShaker
   class Config
-    # TODO: Add validation
     class LazadaConfig
       attr_accessor :app_key, :app_secret_key, :redirect_url
 
