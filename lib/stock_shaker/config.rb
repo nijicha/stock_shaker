@@ -2,7 +2,6 @@
 
 require 'stock_shaker/config/lazada_config'
 require 'stock_shaker/config/shopee_config'
-require 'stock_shaker/config/jd_central_config'
 
 module StockShaker
   class << self
@@ -17,12 +16,11 @@ module StockShaker
 
   # TODO: Add validation
   class Config
-    attr_accessor :lazada_config, :shopee_config, :jd_central_config
+    attr_accessor :lazada_config, :shopee_config
 
     def initialize
       @lazada_config = LazadaConfig.new
       @shopee_config = ShopeeConfig.new
-      @jd_central_config = JDCentralConfig.new
     end
   end
 end
