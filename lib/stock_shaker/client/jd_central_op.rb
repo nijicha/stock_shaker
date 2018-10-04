@@ -7,9 +7,9 @@ require 'rest-client'
 module StockShaker
   module Client
     class JDCentralOP
-      attr_reader :common_params, :server_url, :app_key, :app_secret, :access_token
+      attr_reader :common_params, :server_url, :app_secret
 
-      def initialize(server_url, app_key, app_secret, access_token)
+      def initialize(server_url, app_secret)
         @common_params = {
           timestamp: DateTime.now.strftime('%F %T.%L%z'),
           format: 'json',
@@ -17,9 +17,7 @@ module StockShaker
         }
 
         @server_url = server_url
-        @app_key = app_key
         @app_secret = app_secret
-        @access_token = access_token
 
         validates!
       end
@@ -38,14 +36,14 @@ module StockShaker
         sorted_params = request_params.sort_by { |key, _value| key }
 
         # Create sign_base_string
-        sign_base_string = app_secret
+        sign_base_string = @app_secret
         sorted_params.each { |key, value| sign_base_string += "#{key}#{value}" }
-        sign_base_string += app_secret
+        sign_base_string += @app_secret
 
         # Conditional sign by sign_method
         if request_params[:sign_method].include?('hmac')
           digest = OpenSSL::Digest.new('sha256')
-          OpenSSL::HMAC.hexdigest(digest, app_secret, sign_base_string).upcase
+          OpenSSL::HMAC.hexdigest(digest, @app_secret, sign_base_string).upcase
         else
           Digest::MD5.hexdigest(sign_base_string).upcase
         end
@@ -64,9 +62,7 @@ module StockShaker
 
       def validates!
         raise 'server_url is required' unless @server_url
-        raise 'app_key is required' unless @app_key
         raise 'app_secret is required' unless @app_secret
-        raise 'access_token is required' unless @access_token
       end
 
       # TODO: May be JD Central issued this in the future

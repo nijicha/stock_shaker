@@ -27,7 +27,7 @@ A gems used to kick off API of eCommerce in Thailand. This gems inspired from [O
 **StockShaker**'s installation is Easy! Add this line to your application's `Gemfile`
 
 ```ruby
-gem 'stock_shaker', '~> 0.3.1'
+gem 'stock_shaker', '~> 0.3.2'
 ```
 
 If you'd rather install **StockShaker** with ruby-versions below than `2.4`.
@@ -37,7 +37,7 @@ You need to add `openssl` as dependencies in `Gemfile`
 ```ruby
 # Gemfile
  
-gem 'stock_shaker', '~> 0.3.1'
+gem 'stock_shaker', '~> 0.3.2'
 gem 'openssl'
 ```
 
@@ -101,7 +101,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     ```ruby
     server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
-    lazada_request = StockShaker::Request.new('/auth/token/create', :post)
+    lazada_request = StockShaker::Request::LazadaOP.new('/auth/token/create', :post)
     lazada_request_params = { code: 'YOUR_AUTHORIZATION_CODE' }
     lazada_request_params.each { |key, value| request.add_lazada_api_params(key.to_s, value.to_s) }
     response = lazada_client.execute(lazada_request)
@@ -116,7 +116,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     ```ruby
     server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
-    lazada_request = StockShaker::Request.new('/auth/token/refresh', :post)
+    lazada_request = StockShaker::Request::LazadaOP.new('/auth/token/refresh', :post)
     lazada_request_params = { refresh_token: 'YOUR_REFRESH_TOKEN' }
     lazada_request_params.each { |key, value| request.add_lazada_api_params(key.to_s, value.to_s) }
     response = lazada_client.execute(lazada_request)
@@ -134,7 +134,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     server_url = StockShaker::Client::LAZADA_API_GATEWAY_URL_TH
     access_token = ENV['YOUR_ACCESS_TOKEN']
     lazada_client = StockShaker::Client::LazadaOP.new(server_url)
-    lazada_request = StockShaker::Request.new('/orders/get', :get)
+    lazada_request = StockShaker::Request::LazadaOP.new('/orders/get', :get)
 
     # Get orders since last two days by update_after
     days_backwards = 2 # Get backwards 2 days
@@ -174,7 +174,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     update_time_to = StockShaker::Utility.datetime_to_timestamp(DateTime.now)
     
     client = StockShaker::Client::ShopeeOP.new(server_url, shop_id)
-    request = StockShaker::Request.new('/orders/basics', :post)
+    request = StockShaker::Request::ShopeeOP.new('/orders/basics', :post)
     
     request.add_shopee_api_params({
       update_time_from: update_time_from,
@@ -228,8 +228,21 @@ See more: [Lazada Open Platform Documentation](https://open.lazada.com/doc/api.h
 ### Shopee
 See more: [Shopee Open Platform Documentation](https://open.shopee.com/documents)
 - [ ] Integrate with API reference
+- ItemAPI
+  - [x] GetItemsList (/items/get)
+  - [x] GetItemDetails (/item/get)
+  - [x] UpdateStock (/items/update_stock)
+  - [x] UpdateStockBatch (/items/update/items_stock)
+  - [x] UpdateVariationStock (/items/update_variation_stock)
+  - [x] UpdateVariationStockBatch (/items/update/vars_stock)
+  - [x] InsertItemImg (/item/img/insert)
+  - [x] DeleteItemImg (/item/img/delete)
 - OrderAPI
-  - [x] GetOrdersList
+  - [x] GetOrdersList (/orders/basics)
+  - [x] GetOrdersDetail (/orders/detail)
+  - [x] GetEscrowDetails (/orders/my_income)
+- ShopAPI
+  - [x] GetPerformance (/shop/performance)
 
 ### JD Central
 

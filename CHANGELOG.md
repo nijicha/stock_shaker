@@ -1,3 +1,7 @@
+0.3.2 / 2018-08-14
+---
+- Added JD Central (TH) Integration
+
 0.3.1 / 2018-08-14
 ---
 - Return ::Client::ShopeeOP.perform as Object type not a JSON

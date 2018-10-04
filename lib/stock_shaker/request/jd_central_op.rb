@@ -3,10 +3,9 @@
 module StockShaker
   module Request
     class JDCentralOP
-      attr_reader :api_name, :http_method, :api_params, :business_params, :header_params
+      attr_reader :http_method, :api_params, :business_params, :header_params
 
-      def initialize(api_name = nil, http_method = :post)
-        @api_name = api_name
+      def initialize(http_method = :post)
         @http_method = http_method
         @api_params = {}
         @business_params = {}
@@ -32,7 +31,6 @@ module StockShaker
       end
 
       def validate!
-        raise 'api_name is required' if @api_name.blank?
         raise 'http_method accepted only :post' unless @http_method.eql?(:post)
       end
     end
