@@ -16,5 +16,8 @@ module StockShaker
     SHOPEE_API_AUTH_URL = 'https://partner.shopeemobile.com/api/v1/shop/auth_partner'.freeze
     SHOPEE_API_CANCEL_AUTH_URL = 'https://partner.shopeemobile.com/api/v1/shop/cancel_auth_partner'.freeze
     SHOPEE_API_GATEWAY_URL_TH = 'https://partner.shopeemobile.com/api/v1'.freeze
+
+    # JD_CENTRAL
+    JD_CENTRAL_API_GATEWAY_URL_TH = 'https://open.jd.co.th/api'.freeze
   end
 end

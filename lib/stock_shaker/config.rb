@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'stock_shaker/config/lazada_config'
-require 'stock_shaker/config/shopee_config'
+require_relative 'config/lazada_config'
+require_relative 'config/shopee_config'
 
 module StockShaker
   class << self
