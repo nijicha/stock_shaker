@@ -21,7 +21,9 @@ module StockShaker
 
       def add_business_params(hash)
         raise 'business_params is not hash' unless hash.is_a? Hash
-        @business_params = hash
+        @business_params = {
+          param_json: hash.to_json
+        }
       end
 
       def add_header_params(key, value)

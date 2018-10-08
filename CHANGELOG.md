@@ -1,4 +1,16 @@
-0.3.2 / 2018-08-14
+0.3.3 / 2018-10-8
+---
+- assign `business_params`
+```ruby
+# lib/stock_shaker/request/jd_central_op.rb
+# JDCentralOP#add_business_params line 24 - 26
+ 
+@business_params = {
+  param_json: hash.to_json
+}
+```
+
+0.3.2 / 2018-10-4
 ---
 - Added JD Central (TH) Integration
 
