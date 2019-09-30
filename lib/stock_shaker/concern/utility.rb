@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'cgi'
-
 module StockShaker
   module Concern
     module Utility

@@ -4,6 +4,8 @@ require 'json'
 require 'openssl'
 require 'rest-client'
 
+require_relative '../concern/utility'
+
 module StockShaker
   module Client
     class LazadaOP

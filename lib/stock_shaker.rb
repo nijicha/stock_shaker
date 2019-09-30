@@ -5,6 +5,8 @@ require 'stock_shaker/client/lazada_op'
 require 'stock_shaker/client/shopee_op'
 require 'stock_shaker/client/jd_central_op'
 
+require 'stock_shaker/concern/utility'
+
 require 'stock_shaker/config'
 
 require 'stock_shaker/request/lazada_op'
