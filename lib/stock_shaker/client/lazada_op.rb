@@ -7,7 +7,7 @@ require 'rest-client'
 module StockShaker
   module Client
     class LazadaOP
-      include StockShaker::Utility
+      include Concern::Utility
 
       attr_reader :common_params, :server_url, :rest_url
 
