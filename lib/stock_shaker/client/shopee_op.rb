@@ -7,7 +7,7 @@ require 'rest-client'
 module StockShaker
   module Client
     class ShopeeOP
-      include Utility
+      include StockShaker::Utility
 
       attr_reader :common_params, :server_url, :rest_url
 
