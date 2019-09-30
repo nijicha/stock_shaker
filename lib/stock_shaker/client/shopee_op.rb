@@ -7,6 +7,8 @@ require 'rest-client'
 module StockShaker
   module Client
     class ShopeeOP
+      include Utility
+
       attr_reader :common_params, :server_url, :rest_url
 
       def initialize(server_url, shop_id)
@@ -62,7 +64,7 @@ module StockShaker
           redirect: StockShaker.config.shopee_config.redirect_url
         }
 
-        "#{StockShaker::Client::SHOPEE_API_AUTH_URL}?#{params.to_query}"
+        "#{StockShaker::Client::SHOPEE_API_AUTH_URL}?#{to_query_params(params)}"
       end
     end
   end

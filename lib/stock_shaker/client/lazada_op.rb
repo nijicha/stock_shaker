@@ -7,6 +7,8 @@ require 'rest-client'
 module StockShaker
   module Client
     class LazadaOP
+      include Utility
+
       attr_reader :common_params, :server_url, :rest_url
 
       def initialize(server_url)
@@ -62,7 +64,7 @@ module StockShaker
       # REVIEW: Regarding to Regarding to Lazada Open Platform Official rubygem
       # header_params is unused.
       def perform(url, request)
-        query_params = request.api_params.blank? ? '' : request.api_params.to_query
+        query_params = request.api_params.blank? ? '' : to_query_params(request.api_params)
         response = RestClient::Request.execute(
           method: request.http_method,
           url: "#{url}&#{query_params}",
@@ -84,7 +86,7 @@ module StockShaker
           redirect_uri: StockShaker.config.lazada_config.redirect_url
         }
 
-        "#{StockShaker::Client::LAZADA_API_AUTH_URL}?#{params.to_query}"
+        "#{StockShaker::Client::LAZADA_API_AUTH_URL}?#{to_query_params(params)}"
       end
     end
   end

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name = 'stock_shaker'
   spec.version = StockShaker::VERSION
   spec.platform = Gem::Platform::RUBY
-  spec.required_ruby_version = '>= 2.2.0'
+  spec.required_ruby_version = '>= 2.3.0'
   spec.authors = ['Nathakorn Chaninthanadecha']
   spec.email = ['nathakorn.tonch@gmail.com']
 
@@ -37,12 +37,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'activesupport', '~> 5.0'
   spec.add_runtime_dependency 'rest-client', '~> 2.0', '>= 2.0.2'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'gyoku', '~> 1.3', '>= 1.3.1'
-  spec.add_development_dependency 'nokogiri', '~> 1.8', '>= 1.8.4'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.57.2'

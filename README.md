@@ -138,7 +138,7 @@ StockShaker::Client::ShopeeOP.do_authorization_link
 
     # Get orders since last two days by update_after
     days_backwards = 2 # Get backwards 2 days
-    update_after = StockShaker::Utility.datetime_to_iso8601(DateTime.now.beginning_of_day - days_backwards.days)
+    update_after = StockShaker::DateUtil.datetime_to_iso8601(DateTime.now.beginning_of_day - days_backwards.days)
   
     lazada_request_params = { 
       created_before: '2018-02-10T16:00:00+07:00',
@@ -170,8 +170,8 @@ StockShaker::Client::ShopeeOP.do_authorization_link
     server_url = StockShaker::Client::SHOPEE_API_GATEWAY_URL_TH
     shop_id = ENV['YOUR_SHOP_ID']
     
-    update_time_from = StockShaker::Utility.datetime_to_timestamp(DateTime.now.beginning_of_day - 2.days)
-    update_time_to = StockShaker::Utility.datetime_to_timestamp(DateTime.now)
+    update_time_from = StockShaker::DateUtil.datetime_to_timestamp(DateTime.now.beginning_of_day - 2.days)
+    update_time_to = StockShaker::DateUtil.datetime_to_timestamp(DateTime.now)
     
     client = StockShaker::Client::ShopeeOP.new(server_url, shop_id)
     request = StockShaker::Request::ShopeeOP.new('/orders/basics', :post)
