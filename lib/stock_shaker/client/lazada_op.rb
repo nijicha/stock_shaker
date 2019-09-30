@@ -26,14 +26,14 @@ module StockShaker
       def execute(request, access_token = nil)
         @common_params[:access_token] = access_token if access_token
         @common_params[:sign] = do_signature(request.api_params, request.api_name)
-        @rest_url = do_rest_url(@server_url, request.api_name, @common_params)
+        @rest_url = do_rest_url(request.api_name)
         perform(@rest_url, request)
       rescue StandardError => err
         raise "#{@rest_url}, HTTP_ERROR, #{err.message}"
       end
 
       def do_signature(api_params, api_name)
-        params = api_params.nil? ? common_params : common_params.merge(api_params)
+        params = api_params.nil? ? @common_params : @common_params.merge(api_params)
         sort_arrays = params.sort_by { |key, _value| key.to_s }
 
         # See signature pattern : https://open.lazada.com/doc/doc.htm?spm=a2o9m.11193531.0.0.40ed6bbemuDwkW#?nodeId=10451&docId=108069
@@ -41,20 +41,21 @@ module StockShaker
         sort_arrays.each { |key, value| signature_base_string += "#{key}#{value}" }
 
         sign_digest = OpenSSL::Digest.new('sha256')
-        OpenSSL::HMAC.hexdigest(sign_digest, StockShaker.config.lazada_config.app_secret_key, signature_base_string).upcase
+        secret_key = StockShaker.config.lazada_config.app_secret_key
+        OpenSSL::HMAC.hexdigest(sign_digest, secret_key, signature_base_string).upcase
       end
 
       # REVIEW: Regarding to Lazada Open Platform Official rubygem
       # @common_params didn't sort!!!!
       # Can't use to_query method for @common_params
       # Parse hash to query string by manually
-      def do_rest_url(server_url, api_name, common_params)
-        raise 'Signature should not be blank. Please generate signature by LazadaOP#do_signature.' if common_params[:sign].blank?
-        length = server_url.length
-        rest_url = server_url[(length - 1)] == '/' ? server_url.chomp!('/') : server_url
+      def do_rest_url(api_name)
+        raise 'Signature should not be blank. Please generate signature by LazadaOP#do_signature.' if @common_params[:sign].blank?
+        length = @server_url.length
+        rest_url = @server_url[(length - 1)] == '/' ? @server_url.chomp!('/') : @server_url
 
         common_params_string = ''
-        common_params.each do |key, value|
+        @common_params.each do |key, value|
           common_params_string += '&' unless common_params_string.blank?
           common_params_string += "#{key}=#{value}"
         end
@@ -63,11 +64,13 @@ module StockShaker
 
       # REVIEW: Regarding to Regarding to Lazada Open Platform Official rubygem
       # header_params is unused.
-      def perform(url, request)
+      def perform(rest_url, request)
         query_params = request.api_params.blank? ? '' : to_query_params(request.api_params)
+        url = request.http_method == :post ? rest_url : "#{rest_url}&#{query_params}"
+
         response = RestClient::Request.execute(
           method: request.http_method,
-          url: "#{url}&#{query_params}",
+          url: url,
           timeout: 10,
           headers: request.header_params
         )
