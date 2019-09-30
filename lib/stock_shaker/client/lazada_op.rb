@@ -71,8 +71,9 @@ module StockShaker
         response = RestClient::Request.execute(
           method: request.http_method,
           url: url,
-          timeout: 10,
-          headers: request.header_params
+          headers: request.header_params,
+          read_timeout: 30,
+          open_timeout: 15
         )
         JSON.parse(response)
       end
