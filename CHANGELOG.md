@@ -1,3 +1,10 @@
+0.3.4 / 2019-09-30
+---
+- Create new `StockShaker::Concern::Utility`
+- Rework Utility -> DateUtil
+- Rework `client/lazada_op`
+- Remove `active_support` from dependencies
+
 0.3.3 / 2018-10-8
 ---
 - assign `business_params`
