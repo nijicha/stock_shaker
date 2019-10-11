@@ -29,7 +29,12 @@ module StockShaker
         @common_params[:access_token] = access_token if access_token
         @common_params[:sign] = do_signature(request.api_params, request.api_name)
         @rest_url = do_rest_url(request.api_name)
-        perform(@rest_url, request)
+        if request.http_method == :post
+          perform_post(@rest_url, request)
+        else
+          perform_get(@rest_url, request)
+        end
+
       rescue StandardError => err
         raise "#{@rest_url}, HTTP_ERROR, #{err.message}"
       end
@@ -66,13 +71,25 @@ module StockShaker
 
       # REVIEW: Regarding to Regarding to Lazada Open Platform Official rubygem
       # header_params is unused.
-      def perform(rest_url, request)
+      def perform_get(rest_url, request)
         query_params = request.api_params.blank? ? '' : to_query_params(request.api_params)
-        url = request.http_method == :post ? rest_url : "#{rest_url}&#{query_params}"
+        url = "#{rest_url}&#{query_params}"
 
         response = RestClient::Request.execute(
           method: request.http_method,
           url: url,
+          headers: request.header_params,
+          read_timeout: 30,
+          open_timeout: 15
+        )
+        JSON.parse(response)
+      end
+
+      def perform_post(rest_url, request)
+        response = RestClient::Request.execute(
+          method: request.http_method,
+          url: rest_url,
+          payload: request.api_params,
           headers: request.header_params,
           read_timeout: 30,
           open_timeout: 15
