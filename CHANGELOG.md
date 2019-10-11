@@ -1,3 +1,7 @@
+0.3.5 / 2019-10-11
+---
+- Rework perform method in `StockShaker::Client::LazadaOP`
+
 0.3.4 / 2019-09-30
 ---
 - Create new `StockShaker::Concern::Utility`
